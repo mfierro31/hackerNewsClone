@@ -34,6 +34,12 @@ $(async function () {
     const username = $("#login-username").val();
     const password = $("#login-password").val();
 
+    //check to see if they actually entered anything for 'username' and 'password'
+    //if we don't check this, it will log in a blank user
+    if (!username || !password) {
+      return;
+    }
+
     // call the login static method to build a user instance
     const userInstance = await User.login(username, password);
     // set the global user to the user instance
@@ -54,6 +60,10 @@ $(async function () {
     let name = $("#create-account-name").val();
     let username = $("#create-account-username").val();
     let password = $("#create-account-password").val();
+
+    if (!name || !username || !password) {
+      return;
+    }
 
     // call the create method, which calls the API and then builds a new user instance
     const newUser = await User.create(username, password, name);
